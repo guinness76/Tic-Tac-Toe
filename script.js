@@ -21,55 +21,80 @@ function players(playerOne, playerTwo) {
 // Players created with factory function and assigned to currentPlayers variable
 const currentPlayers = players(playerOne, playerTwo);
 
+console.log(currentPlayers);
+
 let matchWin = false;
 
 let gameboard = {
-  "oneOne": " ",
-  "oneTwo": " ",
-  "oneThree": " ",
-  "twoOne": " ",
-  "twoTwo": " ",
-  "twoThree": " ",
-  "threeOne": " ",
-  "threeTwo": " ",
-  "threeThree": " ",
-}
-  
+  oneOne: " ",
+  oneTwo: " ",
+  oneThree: " ",
+  twoOne: " ",
+  twoTwo: " ",
+  twoThree: " ",
+  threeOne: " ",
+  threeTwo: " ",
+  threeThree: " ",
+};
+
 function displayGame() {
-  console.log(`[${gameboard["oneOne"]}][${gameboard["oneTwo"]}][${gameboard["oneThree"]}]`);
-  console.log(`[${gameboard["twoOne"]}][${gameboard["twoTwo"]}][${gameboard["twoThree"]}]`);
-  console.log(`[${gameboard["threeOne"]}][${gameboard["threeTwo"]}][${gameboard["threeThree"]}]`);
+  console.log(
+    `[${gameboard.oneOne}][${gameboard.oneTwo}][${gameboard.oneThree}]`
+  );
+  console.log(
+    `[${gameboard.twoOne}][${gameboard.twoTwo}][${gameboard.twoThree}]`
+  );
+  console.log(
+    `[${gameboard.threeOne}][${gameboard.threeTwo}][${gameboard.threeThree}]`
+  );
 }
 
 displayGame();
+
 let playerOneTurn = true;
-let turn = 0;
+let turn = 1;
 
 //Loops game until a player wins
-while ((matchWin = false)) {
-  if (turn > 0) {
-    !playerOneTurn;
-  } else if (playerOneTurn === true) {
-    prompt("Which square do you choose?");
-  } else {
-    prompt("Which square do you choose?")
+while (matchWin === false) {
+  if (turn > 1 && playerOneTurn === true) {
+    playerOneTurn = false;
+  } else if (turn > 1 && playerOneTurn === false) {
+    playerOneTurn = true;
+  }
+
+  console.log("Is it player one's turn? ", playerOneTurn);
+
+  if (playerOneTurn === true) {
+    let playerOneChoice = prompt(`${playerOne}, which square do you choose?`);
+    currentPlayers[0].playerOneMoves.push(playerOneChoice);
+    gameboard[playerOneChoice] = currentPlayers[0].playerOneIcon;
+    if (currentPlayers[0].playerOneMoves.length > 2) {
+    }
+    displayGame();
+  } else if (playerOneTurn === false) {
+    let playerTwoChoice = prompt(`${playerTwo}, which square do you choose?`);
+    currentPlayers[1].playerTwoMoves.push(playerTwoChoice);
+    gameboard[playerTwoChoice] = currentPlayers[1].playerTwoIcon;
+    if (currentPlayers[1].playerTwoMoves.length > 2) {
+    }
+    displayGame();
   }
 
   turn++;
-
+  if (turn > 9) {
+    matchWin = true;
+    console.log("A tie!");
   }
-
-
-  
-  // Win conditions array listing rowColumn
-  winConditions = [
-    [oneOne, oneTwo, oneThree],
-    [twoOne, twoTwo, twoThree],
-    [threeOne, threeTwo, threeThree],
-    [oneOne, twoOne, threeOne],
-    [twoOne, twoTwo, twoThree],
-    [threeOne, threeTwo, threeThree],
-    [oneOne, twoTwo, threeThree],
-    [oneThree, twoTwo, threeOne],
-  ];
 }
+
+// Win conditions array listing rowColumn
+// winConditions = [
+//   [oneOne, oneTwo, oneThree],
+//   [twoOne, twoTwo, twoThree],
+//   [threeOne, threeTwo, threeThree],
+//   [oneOne, twoOne, threeOne],
+//   [twoOne, twoTwo, twoThree],
+//   [threeOne, threeTwo, threeThree],
+//   [oneOne, twoTwo, threeThree],
+//   [oneThree, twoTwo, threeOne],
+// ];
