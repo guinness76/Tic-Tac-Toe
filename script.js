@@ -23,20 +23,22 @@ const currentPlayers = players(playerOne, playerTwo);
 
 let matchWin = false;
 
-let oneOne = " ";
-let oneTwo = " ";
-let oneThree = " ";
-let twoOne = " ";
-let twoTwo = " ";
-let twoThree = " ";
-let threeOne = " ";
-let threeTwo = " ";
-let threeThree = " ";
-
+let gameboard = {
+  "oneOne": " ",
+  "oneTwo": " ",
+  "oneThree": " ",
+  "twoOne": " ",
+  "twoTwo": " ",
+  "twoThree": " ",
+  "threeOne": " ",
+  "threeTwo": " ",
+  "threeThree": " ",
+}
+  
 function displayGame() {
-  console.log(`[${oneOne}][${oneTwo}][${oneThree}]`);
-  console.log(`[${twoOne}][${twoTwo}][${twoThree}]`);
-  console.log(`[${threeOne}][${threeTwo}][${threeThree}]`);
+  console.log(`[${gameboard["oneOne"]}][${gameboard["oneTwo"]}][${gameboard["oneThree"]}]`);
+  console.log(`[${gameboard["twoOne"]}][${gameboard["twoTwo"]}][${gameboard["twoThree"]}]`);
+  console.log(`[${gameboard["threeOne"]}][${gameboard["threeTwo"]}][${gameboard["threeThree"]}]`);
 }
 
 displayGame();
@@ -47,16 +49,16 @@ let turn = 0;
 while ((matchWin = false)) {
   if (turn > 0) {
     !playerOneTurn;
-  }
-
-  if (playerOneTurn === true) {
-    prompt("Which square do you choose?")
+  } else if (playerOneTurn === true) {
+    prompt("Which square do you choose?");
   } else {
     prompt("Which square do you choose?")
   }
 
+  turn++;
 
   }
+
 
   
   // Win conditions array listing rowColumn
