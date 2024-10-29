@@ -40,20 +40,25 @@ function displayGame() {
 }
 
 displayGame();
+let playerOneTurn = true;
+let turn = 0;
 
 //Loops game until a player wins
 while ((matchWin = false)) {
-  if (
-    currentPlayers[0].playerOneMoves == [] &&
-    currentPlayers[1].playerTwoMoves == []
-  ) {
-    let playerOneTurn = true;
+  if (turn > 0) {
+    !playerOneTurn;
   }
 
   if (playerOneTurn === true) {
+    prompt("Which square do you choose?")
   } else {
+    prompt("Which square do you choose?")
   }
 
+
+  }
+
+  
   // Win conditions array listing rowColumn
   winConditions = [
     [oneOne, oneTwo, oneThree],
