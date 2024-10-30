@@ -66,6 +66,7 @@ displayGame();
 let matchWin = false;
 let playerOneTurn = true;
 let turn = 1;
+let winner = "";
 
 //Loops game until a player wins
 while (matchWin === false) {
@@ -82,6 +83,18 @@ while (matchWin === false) {
     currentPlayers[0].playerOneMoves.push(playerOneChoice);
     gameboard[playerOneChoice] = currentPlayers[0].playerOneIcon;
     if (currentPlayers[0].playerOneMoves.length > 2) {
+      for (let i = 0; i < winConditions; i++) {
+        let tempArray = [];
+        winConditions[i].map((el) => {
+          if (currentPlayers[0].playerOneMoves.includes(el)) {
+            tempArray.push(el);
+          }
+          if ((tempArray.length = 3)) {
+            winner = currentPlayers[0].playerOneName;
+            endgame();
+          }
+        });
+      }
     }
     displayGame();
   } else if (playerOneTurn === false) {
@@ -89,13 +102,27 @@ while (matchWin === false) {
     currentPlayers[1].playerTwoMoves.push(playerTwoChoice);
     gameboard[playerTwoChoice] = currentPlayers[1].playerTwoIcon;
     if (currentPlayers[1].playerTwoMoves.length > 2) {
+      let tempArray = [];
+      winConditions[i].map((el) => {
+        if (currentPlayers[1].playerTwoMoves.includes(el)) {
+          tempArray.push(el);
+        }
+        if ((tempArray.length = 3)) {
+          winner = currentPlayers[1].playerTwoName;
+          endgame();
+        }
+      });
+      displayGame();
     }
-    displayGame();
-  }
 
-  turn++;
-  if (turn > 9) {
-    matchWin = true;
-    console.log("A tie!");
+    turn++;
+    if (turn > 9) {
+      matchWin = true;
+      console.log("A tie!");
+    }
   }
+}
+
+function endgame() {
+  console.log("The winner is " + winner + "!");
 }
