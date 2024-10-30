@@ -23,8 +23,7 @@ const currentPlayers = players(playerOne, playerTwo);
 
 console.log(currentPlayers);
 
-let matchWin = false;
-
+// Empty starting board
 let gameboard = {
   oneOne: " ",
   oneTwo: " ",
@@ -37,6 +36,7 @@ let gameboard = {
   threeThree: " ",
 };
 
+// Display game in the console
 function displayGame() {
   console.log(
     `[${gameboard.oneOne}][${gameboard.oneTwo}][${gameboard.oneThree}]`
@@ -49,8 +49,21 @@ function displayGame() {
   );
 }
 
-displayGame();
+// Win conditions array, listing rowColumn
+winConditions = [
+  ["oneOne", "oneTwo", "oneThree"],
+  ["twoOne", "twoTwo", "twoThree"],
+  ["threeOne", "threeTwo", "threeThree"],
+  ["oneOne", "twoOne", "threeOne"],
+  ["twoOne", "twoTwo", "twoThree"],
+  ["threeOne", "threeTwo", "threeThree"],
+  ["oneOne", "twoTwo", "threeThree"],
+  ["oneThree", "twoTwo", "threeOne"],
+];
 
+// Set beginning conditions
+displayGame();
+let matchWin = false;
 let playerOneTurn = true;
 let turn = 1;
 
@@ -86,15 +99,3 @@ while (matchWin === false) {
     console.log("A tie!");
   }
 }
-
-// Win conditions array listing rowColumn
-// winConditions = [
-//   [oneOne, oneTwo, oneThree],
-//   [twoOne, twoTwo, twoThree],
-//   [threeOne, threeTwo, threeThree],
-//   [oneOne, twoOne, threeOne],
-//   [twoOne, twoTwo, twoThree],
-//   [threeOne, threeTwo, threeThree],
-//   [oneOne, twoTwo, threeThree],
-//   [oneThree, twoTwo, threeOne],
-// ];
