@@ -7,11 +7,12 @@ function ticTacToe() {
   function players(playerOne, playerTwo) {
     const playerOneName = playerOne;
     const playerOneIcon = "X";
-    let playerOneMoves = [];
+    //Remove moves
+    let playerOneMoves = ["oneOne", "oneTwo"];
 
     const playerTwoName = playerTwo;
     const playerTwoIcon = "O";
-    let playerTwoMoves = [];
+    let playerTwoMoves = ["threeOne", "threeTwo"];
 
     return [
       { playerOneName, playerOneIcon, playerOneMoves },
@@ -25,15 +26,16 @@ function ticTacToe() {
   console.log(currentPlayers);
 
   // Empty starting board
+  // Remove marks
   let gameboard = {
-    oneOne: " ",
-    oneTwo: " ",
+    oneOne: "X",
+    oneTwo: "X",
     oneThree: " ",
     twoOne: " ",
     twoTwo: " ",
     twoThree: " ",
-    threeOne: " ",
-    threeTwo: " ",
+    threeOne: "O",
+    threeTwo: "O",
     threeThree: " ",
   };
 
@@ -69,6 +71,8 @@ function ticTacToe() {
   let turn = 1;
   let winner = "";
 
+  gameFlow();
+
   function gameFlow() {
     //Loops game until a player wins
     while (matchTie === false) {
@@ -78,7 +82,18 @@ function ticTacToe() {
         playerOneTurn = true;
       }
 
+      // Tests
       console.log("Is it player one's turn? ", playerOneTurn);
+      console.log("Which turn is it? ", turn);
+      console.log(
+        "Player one's moves list: ",
+        currentPlayers[0].playerOneMoves
+      );
+      console.log(
+        "Player two's moves list: ",
+        currentPlayers[1].playerTwoMoves
+      );
+      //Tests end
 
       if (playerOneTurn === true) {
         let playerOneChoice = prompt(
@@ -87,12 +102,16 @@ function ticTacToe() {
         currentPlayers[0].playerOneMoves.push(playerOneChoice);
         gameboard[playerOneChoice] = currentPlayers[0].playerOneIcon;
         if (currentPlayers[0].playerOneMoves.length > 2) {
+          console.log("If condition to check for win met.");
           for (let i = 0; i < winConditions; i++) {
             let tempArray = [];
             winConditions[i].map((el) => {
               if (currentPlayers[0].playerOneMoves.includes(el)) {
                 tempArray.push(el);
               }
+              //Test tempArray
+              console.log(tempArray);
+              //End Test
               if ((tempArray.length = 3)) {
                 return (winner = currentPlayers[0].playerOneName);
               }
@@ -116,14 +135,13 @@ function ticTacToe() {
               return (winner = currentPlayers[1].playerTwoName);
             }
           });
-          displayGame();
         }
-
-        turn++;
-        if (turn > 9) {
-          console.log("Match is tied!");
-          matchTie = true;
-        }
+        displayGame();
+      }
+      turn++;
+      if (turn > 9) {
+        console.log("Match is tied!");
+        matchTie = true;
       }
     }
   }
