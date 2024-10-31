@@ -7,12 +7,11 @@ function ticTacToe() {
   function players(playerOne, playerTwo) {
     const playerOneName = playerOne;
     const playerOneIcon = "X";
-    //Remove moves
-    let playerOneMoves = ["oneOne", "oneTwo"];
+    let playerOneMoves = [];
 
     const playerTwoName = playerTwo;
     const playerTwoIcon = "O";
-    let playerTwoMoves = ["threeOne", "threeTwo"];
+    let playerTwoMoves = [];
 
     return [
       { playerOneName, playerOneIcon, playerOneMoves },
@@ -26,16 +25,15 @@ function ticTacToe() {
   console.log(currentPlayers);
 
   // Empty starting board
-  // Remove marks
   let gameboard = {
-    oneOne: "X",
-    oneTwo: "X",
+    oneOne: " ",
+    oneTwo: " ",
     oneThree: " ",
     twoOne: " ",
     twoTwo: " ",
     twoThree: " ",
-    threeOne: "O",
-    threeTwo: "O",
+    threeOne: " ",
+    threeTwo: " ",
     threeThree: " ",
   };
 
@@ -103,19 +101,18 @@ function ticTacToe() {
         gameboard[playerOneChoice] = currentPlayers[0].playerOneIcon;
         if (currentPlayers[0].playerOneMoves.length > 2) {
           console.log("If condition to check for win met.");
-          for (let i = 0; i < winConditions; i++) {
-            let tempArray = [];
+          for (let i = 0; i < winConditions.length; i++) {
+            let winCount = 0;
             winConditions[i].map((el) => {
               if (currentPlayers[0].playerOneMoves.includes(el)) {
-                tempArray.push(el);
-              }
-              //Test tempArray
-              console.log(tempArray);
-              //End Test
-              if ((tempArray.length = 3)) {
-                return (winner = currentPlayers[0].playerOneName);
+                winCount++;
               }
             });
+            console.log("WinCount: ", winCount);
+
+            if (winCount === 3) {
+              return (winner = currentPlayers[0].playerOneName);
+            }
           }
         }
         displayGame();
@@ -126,15 +123,20 @@ function ticTacToe() {
         currentPlayers[1].playerTwoMoves.push(playerTwoChoice);
         gameboard[playerTwoChoice] = currentPlayers[1].playerTwoIcon;
         if (currentPlayers[1].playerTwoMoves.length > 2) {
-          let tempArray = [];
-          winConditions[i].map((el) => {
-            if (currentPlayers[1].playerTwoMoves.includes(el)) {
-              tempArray.push(el);
-            }
-            if ((tempArray.length = 3)) {
+          console.log("If condition to check for win met.");
+          for (let i = 0; i < winConditions.length; i++) {
+            let winCount = 0;
+            winConditions[i].map((el) => {
+              if (currentPlayers[1].playerTwoMoves.includes(el)) {
+                winCount++;
+              }
+            });
+            console.log(winCount);
+
+            if (winCount === 3) {
               return (winner = currentPlayers[1].playerTwoName);
             }
-          });
+          }
         }
         displayGame();
       }
