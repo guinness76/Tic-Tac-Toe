@@ -3,3 +3,117 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+body {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.squares {
+  display: grid;
+  grid-template-columns: 6rem 6rem 6rem;
+  grid-template-rows: 6rem 6rem 6rem;
+}
+
+.oneOne {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  border: 2px solid black;
+  font-size: 5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.oneTwo {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  border: 2px solid black;
+  font-size: 5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.oneThree {
+  grid-column: 3 / 4;
+  grid-row: 1 / 2;
+  border: 2px solid black;
+  font-size: 5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.twoOne {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+  border: 2px solid black;
+  font-size: 5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.twoTwo {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  border: 2px solid black;
+  font-size: 5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.twoThree {
+  grid-column: 3 / 4;
+  grid-row: 2 / 3;
+  border: 2px solid black;
+  font-size: 5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.threeOne {
+  grid-column: 1 / 2;
+  grid-row: 3 / 4;
+  border: 2px solid black;
+  font-size: 5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.threeTwo {
+  grid-column: 2 / 3;
+  grid-row: 3 / 4;
+  border: 2px solid black;
+  font-size: 5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.threeThree {
+  grid-column: 3 / 4;
+  grid-row: 3 / 4;
+  border: 2px solid black;
+  font-size: 5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
