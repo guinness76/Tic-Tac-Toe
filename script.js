@@ -1,3 +1,15 @@
+const oneOne = document.querySelector(".oneOne");
+const oneTwo = document.querySelector(".oneTwo");
+const oneThree = document.querySelector(".oneThree");
+const twoOne = document.querySelector(".twoOne");
+const twoTwo = document.querySelector(".twoTwo");
+const twoThree = document.querySelector(".twoThree");
+const threeOne = document.querySelector(".threeOne");
+const threeTwo = document.querySelector(".threeTwo");
+const threeThree = document.querySelector(".threeThree");
+const players = document.querySelector(".players");
+const result = document.querySelector(".result");
+
 function ticTacToe() {
   // Ask for the names of both players
   const playerOne = prompt("Name of Player for X");
@@ -39,15 +51,7 @@ function ticTacToe() {
 
   // Display game in the console
   function displayGame() {
-    console.log(
-      `[${gameboard.oneOne}][${gameboard.oneTwo}][${gameboard.oneThree}]`
-    );
-    console.log(
-      `[${gameboard.twoOne}][${gameboard.twoTwo}][${gameboard.twoThree}]`
-    );
-    console.log(
-      `[${gameboard.threeOne}][${gameboard.threeTwo}][${gameboard.threeThree}]`
-    );
+    
   }
 
   // Win conditions array, listing rowColumn
@@ -63,7 +67,6 @@ function ticTacToe() {
   ];
 
   // Set beginning conditions
-  displayGame();
   let matchTie = false;
   let playerOneTurn = true;
   let turn = 1;
@@ -79,19 +82,6 @@ function ticTacToe() {
       } else if (turn > 1 && playerOneTurn === false) {
         playerOneTurn = true;
       }
-
-      // Tests
-      console.log("Is it player one's turn? ", playerOneTurn);
-      console.log("Which turn is it? ", turn);
-      console.log(
-        "Player one's moves list: ",
-        currentPlayers[0].playerOneMoves
-      );
-      console.log(
-        "Player two's moves list: ",
-        currentPlayers[1].playerTwoMoves
-      );
-      //Tests end
 
       if (playerOneTurn === true) {
         let playerOneChoice = prompt(
@@ -131,14 +121,12 @@ function ticTacToe() {
                 winCount++;
               }
             });
-            console.log(winCount);
 
             if (winCount === 3) {
               return (winner = currentPlayers[1].playerTwoName);
             }
           }
         }
-        displayGame();
       }
       turn++;
       if (turn > 9) {
