@@ -8,7 +8,7 @@ const threeOne = document.querySelector(".threeOne");
 const threeTwo = document.querySelector(".threeTwo");
 const threeThree = document.querySelector(".threeThree");
 const playerNames = document.querySelector(".players");
-const result = document.querySelector(".result");
+const instructions = document.querySelector(".instructions");
 const start = document.querySelector("#start");
 
 function ticTacToe() {
@@ -37,28 +37,7 @@ function ticTacToe() {
   const currentPlayers = players(playerOne, playerTwo);
   console.log(currentPlayers);
 
-  // const firstplayer = currentPlayers[0].playerOneName;
-  // const secondplayer = currentPlayers[1].playerTwoName;
-  console.log("Player Text should have shown up by now!")
   playerNames.textContent = `${playerOne}(X) vs. ${playerTwo}(O)`;
-
-  // Empty starting board
-  let gameboard = {
-    oneOne: " ",
-    oneTwo: " ",
-    oneThree: " ",
-    twoOne: " ",
-    twoTwo: " ",
-    twoThree: " ",
-    threeOne: " ",
-    threeTwo: " ",
-    threeThree: " ",
-  };
-
-  // Display game in the console
-  function displayGame() {
-    
-  }
 
   // Win conditions array, listing rowColumn
   winConditions = [
@@ -78,7 +57,7 @@ function ticTacToe() {
   let turn = 1;
   let winner = "";
 
-  // gameFlow();
+  gameFlow();
 
   function gameFlow() {
     //Loops game until a player wins
@@ -90,13 +69,10 @@ function ticTacToe() {
       }
 
       if (playerOneTurn === true) {
-        let playerOneChoice = prompt(
-          `${playerOne}, which square do you choose?`
-        );
+        instructions.textContent = `${playerOne}, which square do you choose?`;
         currentPlayers[0].playerOneMoves.push(playerOneChoice);
         gameboard[playerOneChoice] = currentPlayers[0].playerOneIcon;
         if (currentPlayers[0].playerOneMoves.length > 2) {
-          console.log("If condition to check for win met.");
           for (let i = 0; i < winConditions.length; i++) {
             let winCount = 0;
             winConditions[i].map((el) => {
@@ -113,9 +89,7 @@ function ticTacToe() {
         }
         displayGame();
       } else if (playerOneTurn === false) {
-        let playerTwoChoice = prompt(
-          `${playerTwo}, which square do you choose?`
-        );
+        instructions.textContent = `${playerTwo}, which square do you choose?`;
         currentPlayers[1].playerTwoMoves.push(playerTwoChoice);
         gameboard[playerTwoChoice] = currentPlayers[1].playerTwoIcon;
         if (currentPlayers[1].playerTwoMoves.length > 2) {
@@ -135,18 +109,18 @@ function ticTacToe() {
       }
       turn++;
       if (turn > 9) {
-        result.textContent = "Match is tied!";
+        instructions.textContent = "Match is tied!";
         matchTie = true;
       }
     }
   }
 
-  // if (winner === currentPlayers[0].playerOneName) {
-  //   result.textContent =
-  //     "The winner of the Tic-Tac-Toe game is " + currentPlayers[0].playerOneName + "!";
-  // } else if (winner === currentPlayers[1].playerTwoName) {
-  //   result.textContent = "The winner of the Tic-Tac-Toe game is " + currentPlayers[1].playerTwoName + "!";
-  // }
+  if (winner === currentPlayers[0].playerOneName) {
+    instructions.textContent =
+      "The winner of the Tic-Tac-Toe game is " + currentPlayers[0].playerOneName + "!";
+  } else if (winner === currentPlayers[1].playerTwoName) {
+    instructions.textContent = "The winner of the Tic-Tac-Toe game is " + currentPlayers[1].playerTwoName + "!";
+  }
 }
 
 start.addEventListener("click", () => {
