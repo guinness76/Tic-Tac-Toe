@@ -9,6 +9,7 @@ const threeTwo = document.querySelector(".threeTwo");
 const threeThree = document.querySelector(".threeThree");
 const players = document.querySelector(".players");
 const result = document.querySelector(".result");
+const start = document.querySelector("#start");
 
 function ticTacToe() {
   // Ask for the names of both players
@@ -33,8 +34,12 @@ function ticTacToe() {
 
   // Players created with factory function and assigned to currentPlayers variable
   const currentPlayers = players(playerOne, playerTwo);
-
   console.log(currentPlayers);
+
+  // const firstplayer = currentPlayers[0].playerOneName;
+  // const secondplayer = currentPlayers[1].playerTwoName;
+  console.log("Player Text should have shown up here!")
+  players.textContent = "Players";
 
   // Empty starting board
   let gameboard = {
@@ -72,7 +77,7 @@ function ticTacToe() {
   let turn = 1;
   let winner = "";
 
-  gameFlow();
+  // gameFlow();
 
   function gameFlow() {
     //Loops game until a player wins
@@ -113,7 +118,6 @@ function ticTacToe() {
         currentPlayers[1].playerTwoMoves.push(playerTwoChoice);
         gameboard[playerTwoChoice] = currentPlayers[1].playerTwoIcon;
         if (currentPlayers[1].playerTwoMoves.length > 2) {
-          console.log("If condition to check for win met.");
           for (let i = 0; i < winConditions.length; i++) {
             let winCount = 0;
             winConditions[i].map((el) => {
@@ -130,25 +134,20 @@ function ticTacToe() {
       }
       turn++;
       if (turn > 9) {
-        console.log("Match is tied!");
+        result.textContent = "Match is tied!";
         matchTie = true;
       }
     }
   }
 
-  if (winner === currentPlayers[0].playerOneName) {
-    console.log(
-      "The winner of the Tic-Tac-Toe game is " +
-        currentPlayers[0].playerOneName +
-        "!"
-    );
-  } else if (winner === currentPlayers[1].playerTwoName) {
-    console.log(
-      "The winner of the Tic-Tac-Toe game is " +
-        currentPlayers[1].playerTwoName +
-        "!"
-    );
-  }
+  // if (winner === currentPlayers[0].playerOneName) {
+  //   result.textContent =
+  //     "The winner of the Tic-Tac-Toe game is " + currentPlayers[0].playerOneName + "!";
+  // } else if (winner === currentPlayers[1].playerTwoName) {
+  //   result.textContent = "The winner of the Tic-Tac-Toe game is " + currentPlayers[1].playerTwoName + "!";
+  // }
 }
 
-// ticTacToe();
+start.addEventListener("click", () => {
+  ticTacToe();
+});
