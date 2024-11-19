@@ -7,7 +7,7 @@ const twoThree = document.querySelector(".twoThree");
 const threeOne = document.querySelector(".threeOne");
 const threeTwo = document.querySelector(".threeTwo");
 const threeThree = document.querySelector(".threeThree");
-const players = document.querySelector(".players");
+const playerNames = document.querySelector(".players");
 const result = document.querySelector(".result");
 const start = document.querySelector("#start");
 
@@ -15,6 +15,7 @@ function ticTacToe() {
   // Ask for the names of both players
   const playerOne = prompt("Name of Player for X");
   const playerTwo = prompt("Name of Player for O");
+
 
   // Object factory function to create players (assign name, icon, and list of moves)
   function players(playerOne, playerTwo) {
@@ -38,8 +39,8 @@ function ticTacToe() {
 
   // const firstplayer = currentPlayers[0].playerOneName;
   // const secondplayer = currentPlayers[1].playerTwoName;
-  console.log("Player Text should have shown up here!")
-  players.textContent = "Players";
+  console.log("Player Text should have shown up by now!")
+  playerNames.textContent = `${playerOne}(X) vs. ${playerTwo}(O)`;
 
   // Empty starting board
   let gameboard = {
