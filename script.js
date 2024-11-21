@@ -112,7 +112,9 @@ function ticTacToe() {
         //DANGEROUS!!!
         
         // while (squareId === "") {
-        //   instructions.textContent = `${playerOne}, which square do you choose?`;
+        //   squares.addEventListener("click", () => {
+
+        //   })
         // }
         
         currentPlayers[0].playerOneMoves.push(squareId);
