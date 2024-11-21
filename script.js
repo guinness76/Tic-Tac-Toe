@@ -11,6 +11,43 @@ const playerNames = document.querySelector(".players");
 const instructions = document.querySelector(".instructions");
 const start = document.querySelector("#start");
 
+
+oneOne.addEventListener("click", () => {
+  squareId = "oneOne";
+});
+
+oneTwo.addEventListener("click", () => {
+  squareId = "oneTwo";
+});
+
+oneThree.addEventListener("click", () => {
+  squareId = "oneThree";
+});
+
+twoOne.addEventListener("click", () => {
+  squareId = "twoOne";
+});
+
+twoTwo.addEventListener("click", () => {
+  squareId = "twoTwo";
+});
+
+twoThree.addEventListener("click", () => {
+  squareId = "twoThree";
+});
+
+threeOne.addEventListener("click", () => {
+  squareId = "threeOne";
+});
+
+threeTwo.addEventListener("click", () => {
+  squareId = "threeTwo";
+});
+
+threeThree.addEventListener("click", () => {
+  squareId = "threeThree";
+});
+
 function ticTacToe() {
   // Ask for the names of both players
   const playerOne = prompt("Name of Player for X");
@@ -56,6 +93,8 @@ function ticTacToe() {
   let playerOneTurn = true;
   let turn = 1;
   let winner = "";
+  let gamelog = [];
+  let squareId = "";
 
   gameFlow();
 
@@ -69,9 +108,17 @@ function ticTacToe() {
       }
 
       if (playerOneTurn === true) {
-        instructions.textContent = `${playerOne}, which square do you choose?`;
-        currentPlayers[0].playerOneMoves.push(playerOneChoice);
-        gameboard[playerOneChoice] = currentPlayers[0].playerOneIcon;
+        
+        //DANGEROUS!!!
+        
+        // while (squareId === "") {
+        //   instructions.textContent = `${playerOne}, which square do you choose?`;
+        // }
+        
+        currentPlayers[0].playerOneMoves.push(squareId);
+        document.querySelector(`.${squareId}`).textContent = currentPlayers[0].playerOneIcon;
+        gamelog.push(squareId);
+
         if (currentPlayers[0].playerOneMoves.length > 2) {
           for (let i = 0; i < winConditions.length; i++) {
             let winCount = 0;
@@ -87,25 +134,30 @@ function ticTacToe() {
             }
           }
         }
-        displayGame();
-      } else if (playerOneTurn === false) {
-        instructions.textContent = `${playerTwo}, which square do you choose?`;
-        currentPlayers[1].playerTwoMoves.push(playerTwoChoice);
-        gameboard[playerTwoChoice] = currentPlayers[1].playerTwoIcon;
-        if (currentPlayers[1].playerTwoMoves.length > 2) {
-          for (let i = 0; i < winConditions.length; i++) {
-            let winCount = 0;
-            winConditions[i].map((el) => {
-              if (currentPlayers[1].playerTwoMoves.includes(el)) {
-                winCount++;
-              }
-            });
+        squareId === "";
 
-            if (winCount === 3) {
-              return (winner = currentPlayers[1].playerTwoName);
-            }
-          }
-        }
+      } else if (playerOneTurn === false) {
+        // Turn for testing purposes
+        turn = 9;
+        // instructions.textContent = `${playerTwo}, which square do you choose?`;
+        
+        // currentPlayers[1].playerTwoMoves.push(playerTwoChoice);
+        // gameboard[playerTwoChoice] = currentPlayers[1].playerTwoIcon;
+        
+        // if (currentPlayers[1].playerTwoMoves.length > 2) {
+        //   for (let i = 0; i < winConditions.length; i++) {
+        //     let winCount = 0;
+        //     winConditions[i].map((el) => {
+        //       if (currentPlayers[1].playerTwoMoves.includes(el)) {
+        //         winCount++;
+        //       }
+        //     });
+
+        //     if (winCount === 3) {
+        //       return (winner = currentPlayers[1].playerTwoName);
+        //     }
+        //   }
+        // }
       }
       turn++;
       if (turn > 9) {
