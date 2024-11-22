@@ -1,58 +1,12 @@
-const oneOne = document.querySelector(".oneOne");
-const oneTwo = document.querySelector(".oneTwo");
-const oneThree = document.querySelector(".oneThree");
-const twoOne = document.querySelector(".twoOne");
-const twoTwo = document.querySelector(".twoTwo");
-const twoThree = document.querySelector(".twoThree");
-const threeOne = document.querySelector(".threeOne");
-const threeTwo = document.querySelector(".threeTwo");
-const threeThree = document.querySelector(".threeThree");
+const squares = document.querySelectorAll(".square");
 const playerNames = document.querySelector(".players");
 const instructions = document.querySelector(".instructions");
 const start = document.querySelector("#start");
-
-
-oneOne.addEventListener("click", () => {
-  squareId = "oneOne";
-});
-
-oneTwo.addEventListener("click", () => {
-  squareId = "oneTwo";
-});
-
-oneThree.addEventListener("click", () => {
-  squareId = "oneThree";
-});
-
-twoOne.addEventListener("click", () => {
-  squareId = "twoOne";
-});
-
-twoTwo.addEventListener("click", () => {
-  squareId = "twoTwo";
-});
-
-twoThree.addEventListener("click", () => {
-  squareId = "twoThree";
-});
-
-threeOne.addEventListener("click", () => {
-  squareId = "threeOne";
-});
-
-threeTwo.addEventListener("click", () => {
-  squareId = "threeTwo";
-});
-
-threeThree.addEventListener("click", () => {
-  squareId = "threeThree";
-});
 
 function ticTacToe() {
   // Ask for the names of both players
   const playerOne = prompt("Name of Player for X");
   const playerTwo = prompt("Name of Player for O");
-
 
   // Object factory function to create players (assign name, icon, and list of moves)
   function players(playerOne, playerTwo) {
@@ -95,6 +49,7 @@ function ticTacToe() {
   let winner = "";
   let gamelog = [];
   let squareId = "";
+  let position = "";
 
   gameFlow();
 
@@ -108,18 +63,54 @@ function ticTacToe() {
       }
 
       if (playerOneTurn === true) {
-        
-        //DANGEROUS!!!
-        
-        // while (squareId === "") {
-        //   squares.addEventListener("click", () => {
+        squares.forEach((element, index) => {
+          element.addEventListener("click", () => {
+            console.log("Square " + index + " clicked");
+            squareId = index;
 
-        //   })
-        // }
-        
-        currentPlayers[0].playerOneMoves.push(squareId);
-        document.querySelector(`.${squareId}`).textContent = currentPlayers[0].playerOneIcon;
-        gamelog.push(squareId);
+            switch (squareId) {
+              case 0:
+                position = "oneOne";
+                break;
+              case 1:
+                position = "oneTwo";
+                break;
+              case 2:
+                position = "oneThree";
+                break;
+              case 3:
+                position = "twoOne";
+                break;
+              case 4:
+                position = "twoTwo";
+                break;
+              case 5:
+                position = "twoThree";
+                break;
+              case 6:
+                position = "threeOne";
+                break;
+              case 7:
+                position = "threeTwo";
+                break;
+              case 8:
+                position = "threeThree";
+                break;
+            }
+
+            if (gamelog.includes(position)) {
+              squareId = "";
+            }
+          });
+        });
+
+        document.querySelector(`.${position}`).textContent =
+          currentPlayers[0].playerOneIcon;
+
+        currentPlayers[0].playerOneMoves.push(position);
+        document.querySelector(`.${position}`).textContent =
+          currentPlayers[0].playerOneIcon;
+        gamelog.push(position);
 
         if (currentPlayers[0].playerOneMoves.length > 2) {
           for (let i = 0; i < winConditions.length; i++) {
@@ -137,15 +128,14 @@ function ticTacToe() {
           }
         }
         squareId === "";
-
       } else if (playerOneTurn === false) {
         // Turn for testing purposes
         turn = 9;
         // instructions.textContent = `${playerTwo}, which square do you choose?`;
-        
+
         // currentPlayers[1].playerTwoMoves.push(playerTwoChoice);
         // gameboard[playerTwoChoice] = currentPlayers[1].playerTwoIcon;
-        
+
         // if (currentPlayers[1].playerTwoMoves.length > 2) {
         //   for (let i = 0; i < winConditions.length; i++) {
         //     let winCount = 0;
@@ -171,9 +161,14 @@ function ticTacToe() {
 
   if (winner === currentPlayers[0].playerOneName) {
     instructions.textContent =
-      "The winner of the Tic-Tac-Toe game is " + currentPlayers[0].playerOneName + "!";
+      "The winner of the Tic-Tac-Toe game is " +
+      currentPlayers[0].playerOneName +
+      "!";
   } else if (winner === currentPlayers[1].playerTwoName) {
-    instructions.textContent = "The winner of the Tic-Tac-Toe game is " + currentPlayers[1].playerTwoName + "!";
+    instructions.textContent =
+      "The winner of the Tic-Tac-Toe game is " +
+      currentPlayers[1].playerTwoName +
+      "!";
   }
 }
 
